@@ -25,7 +25,7 @@ public class UserController
         return new User("Alex", "Veskozi", new java.sql.Date(new java.util.Date().getTime()),phonenumber); 
     }
    */ 
-    @RequestMapping(method=RequestMethod.POST)
+ /*   @RequestMapping(method=RequestMethod.POST)
     public @ResponseBody String createUser(@RequestParam(value="phonenumber", required=false, defaultValue="(097)912-34-48") String phonenumber) 
     {
     	try 
@@ -39,7 +39,7 @@ public class UserController
     	}
     	return "User succesfully created!";
     }
-    
+    */
 
     @Autowired
     private UserDao userDao;

@@ -3,6 +3,7 @@ package phoneservice.model;
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -18,7 +19,9 @@ public class Phone {
 	
 	@Id
   	@GeneratedValue(strategy = GenerationType.AUTO)
-  	private long phone_ID;
+  	private long id;
+	
+	private String phoneId;
 
 	@NotNull
   	@Size(min = 2, max = 80)
@@ -34,9 +37,17 @@ public class Phone {
 	@NotNull
     private Date deactivationDate;
  	
-	@ManyToOne
-	@JoinColumn(name = "user_ID")
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "userId")
 	private User user;
+	
+	public Phone(){}
+	
+	public Phone(String phoneId)
+	{
+		this.phoneId = phoneId;
+	}
+
 	
     public Phone(String phoneNumber, String phoneType, Date activationDate, Date deactivationDate) 
     {
@@ -46,14 +57,19 @@ public class Phone {
         this.deactivationDate=deactivationDate;
     }
 
-    public long getPhone_Id() 
+    public long getId() 
     {
-        return phone_ID;
+        return id;
     }
     
-    public void setPhone_Id(long phone_ID) 
+    public void setPhoneId(String phoneId) 
     {
-    	this.phone_ID = phone_ID;
+    	this.phoneId = phoneId;
+    }
+    
+    public String getPhoneId() 
+    {
+    	return phoneId;
     }
     
     public String getPhoneNumber() 
@@ -105,4 +121,5 @@ public class Phone {
     {
     	this.user=user;
     }
+
 }
