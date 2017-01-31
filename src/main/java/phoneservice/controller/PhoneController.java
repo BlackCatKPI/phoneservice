@@ -17,7 +17,7 @@ import phoneservice.model.User;
 
 @Controller
 @RequestMapping("/user")
-public class UserController 
+public class PhoneController 
 {
 
  /*   @RequestMapping(method=RequestMethod.GET)

@@ -53,21 +53,12 @@ public class UserDao {
     return entityManager.createQuery("from user").getResultList();
   }
   
-  /**
-   * Return the user having the passed email.
-   */
-  public User getByPhoneNumber(String phoneNumber) {
-    return (User) entityManager.createQuery(
-        "from user where phoneNumber = :phoneNumber")
-        .setParameter("phoneNumber", phoneNumber)
-        .getSingleResult();
-  }
-
+  
   /**
    * Return the user having the passed id.
    */
-  public User getById(long user_ID) {
-    return entityManager.find(User.class, user_ID);
+  public User getById(long id) {
+    return entityManager.find(User.class,id);
   }
 
   /**
