@@ -11,12 +11,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import phoneservice.model.UserDao;
+import phoneservice.model.Phone;
+import phoneservice.model.PhoneDao;
 import phoneservice.model.User;
 
-@Controller
-@RequestMapping("/user")
+@RestController
+@RequestMapping("/phone")
 public class PhoneController 
 {
 
@@ -26,20 +29,20 @@ public class PhoneController
     }
    */ 
     @RequestMapping(method=RequestMethod.POST)
-    public @ResponseBody String createUser(@RequestBody User user) 
+    public String addPhone(@RequestBody Phone phone)
     {
     	try 
     	{
-    		 userDao.create(user);
+    		phoneDao.create(phone);
     	}
     	catch (Exception ex) 
     	{
-    		return "Error creating the user: " + ex.toString();
+    		return "Error creating the phone: " + ex.toString();
     	}
-    	return "User succesfully created!";
+    	return "Phone succesfully created!";
     }
  
 
     @Autowired
-    private UserDao userDao;
+    private PhoneDao phoneDao;
 }
