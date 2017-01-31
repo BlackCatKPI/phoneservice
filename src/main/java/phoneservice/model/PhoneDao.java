@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * This class is used to access data for the UserEnity entity.
@@ -29,7 +29,7 @@ public class PhoneDao {
   /**
    * Save the user in the database.
    */
-  public void create(PhoneEntity phone) {
+  public void create(Phone phone) {
     entityManager.persist(phone);
     return;
   }
@@ -37,7 +37,7 @@ public class PhoneDao {
   /**
    * Delete the user from the database.
    */
-  public void delete(PhoneEntity phone) {
+  public void delete(Phone phone) {
     if (entityManager.contains(phone))
       entityManager.remove(phone);
     else
@@ -49,15 +49,15 @@ public class PhoneDao {
    * Return all the users stored in the database.
    */
   @SuppressWarnings("unchecked")
-  public List<UserEntity> getAll() {
+  public List<User> getAll() {
     return entityManager.createQuery("from phone").getResultList();
   }
   
   /**
    * Return the user having the passed email.
    */
-  public PhoneEntity getByPhoneNumber(String phoneNumber) {
-    return (PhoneEntity) entityManager.createQuery(
+  public Phone getByPhoneNumber(String phoneNumber) {
+    return (Phone) entityManager.createQuery(
         "from phone where phoneNumber = :phoneNumber")
         .setParameter("phoneNumber", phoneNumber)
         .getSingleResult();
@@ -66,14 +66,14 @@ public class PhoneDao {
   /**
    * Return the user having the passed id.
    */
-  public PhoneEntity getById(long phone_ID) {
-    return entityManager.find(PhoneEntity.class, phone_ID);
+  public Phone getById(long phone_ID) {
+    return entityManager.find(Phone.class, phone_ID);
   }
 
   /**
    * Update the passed user in the database.
    */
-  public void update(PhoneEntity phone) {
+  public void update(Phone phone) {
     entityManager.merge(phone);
     return;
   }

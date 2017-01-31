@@ -4,9 +4,9 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.transaction.Transactional;
 
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 /**
  * This class is used to access data for the UserEnity entity.
@@ -29,7 +29,7 @@ public class UserDao {
   /**
    * Save the user in the database.
    */
-  public void create(UserEntity user) {
+  public void create(User user) {
     entityManager.persist(user);
     return;
   }
@@ -37,7 +37,7 @@ public class UserDao {
   /**
    * Delete the user from the database.
    */
-  public void delete(UserEntity user) {
+  public void delete(User user) {
     if (entityManager.contains(user))
       entityManager.remove(user);
     else
@@ -49,15 +49,15 @@ public class UserDao {
    * Return all the users stored in the database.
    */
   @SuppressWarnings("unchecked")
-  public List<UserEntity> getAll() {
+  public List<User> getAll() {
     return entityManager.createQuery("from user").getResultList();
   }
   
   /**
    * Return the user having the passed email.
    */
-  public UserEntity getByPhoneNumber(String phoneNumber) {
-    return (UserEntity) entityManager.createQuery(
+  public User getByPhoneNumber(String phoneNumber) {
+    return (User) entityManager.createQuery(
         "from user where phoneNumber = :phoneNumber")
         .setParameter("phoneNumber", phoneNumber)
         .getSingleResult();
@@ -66,14 +66,14 @@ public class UserDao {
   /**
    * Return the user having the passed id.
    */
-  public UserEntity getById(long user_ID) {
-    return entityManager.find(UserEntity.class, user_ID);
+  public User getById(long user_ID) {
+    return entityManager.find(User.class, user_ID);
   }
 
   /**
    * Update the passed user in the database.
    */
-  public void update(UserEntity user) {
+  public void update(User user) {
     entityManager.merge(user);
     return;
   }

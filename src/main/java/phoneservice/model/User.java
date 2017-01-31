@@ -13,7 +13,7 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "user")
-public class UserEntity {
+public class User {
 
 	@Id
   	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -27,18 +27,19 @@ public class UserEntity {
   	@Size(min = 2, max = 80)
   	private String lastName;
 
-  	@NotNull
+  /*	@NotNull
   	private Date birthDate;
 	
   	@NotNull
   	@Size(min = 2, max = 80)
-  	private String phoneNumber;
+  	private String phoneNumber;*/
   	
-  	public UserEntity(String firstName, String lastName, String phoneNumber) 
+  	public User(String firstName, String lastName/*,Date birthDate, String phoneNumber*/) 
   	{
         this.firstName = firstName;
         this.lastName=lastName;
-        this.phoneNumber=phoneNumber;
+       /* this.birthDate=birthDate;
+        this.phoneNumber=phoneNumber;*/
     }
 
     public long getId() 
@@ -71,7 +72,7 @@ public class UserEntity {
         this.lastName=lastName;
     }
     
-    public Date getBirthDate() {
+   /* public Date getBirthDate() {
         return birthDate;
     }
 
@@ -87,6 +88,6 @@ public class UserEntity {
     public void setPhoneNumber(String phoneNumber) 
     {
     	this.phoneNumber=phoneNumber;
-    }
+    }*/
     
 }
